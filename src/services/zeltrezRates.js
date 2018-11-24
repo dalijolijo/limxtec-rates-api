@@ -10,6 +10,7 @@ const zeltrezRates = {
       request({ uri: 'https://api.coinmarketcap.com/v1/ticker/zelcash/', json: true }),
       request({ uri: 'https://www.cryptopia.co.nz/api/GetMarket/ANON_BTC', json: true }),
       request({ uri: 'https://api.coinmarketcap.com/v1/ticker/suqa/', json: true }),
+      request({ uri: 'https://tradesatoshi.com/api/public/getticker?market=GENX_BTC', json: true }),
     ]).then((results) => {
       const ccDataA = results[0]; // results from cryptocompare
       const ccDataB = results[1]; // results from cryptocompare
@@ -18,6 +19,7 @@ const zeltrezRates = {
       const zelprice = Number(results[4][0].price_btc)
       const anonprice = results[5].Data.LastPrice
       const suqaprice = Number(results[6][0].price_btc)
+      const genxprice = results[7].result.last
 
       const rates = [];
       const efg = {}
@@ -36,6 +38,7 @@ const zeltrezRates = {
       efg.ZEL = zelprice
       efg.ANON = anonprice
       efg.SUQA = suqaprice
+      efg.GENX = genxprice
       rates.push(bitpayData);
       rates.push(efg)
 
