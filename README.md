@@ -1,5 +1,5 @@
-# zeltrez-rates-api
-A Restful API that displays currently integrated ZelTreZ coins in exchange Rates
+# limxtec-rates-api
+A Restful API that displays currently integrated LIMXTEC coins in exchange rates
 
 ## Requirements
 Requires node version 6.0 and above
@@ -18,4 +18,3 @@ npm start
 
 After the service has been started, you should be able to browse to it on port 3333.
 Example: http://localhost:3333/rates
-
