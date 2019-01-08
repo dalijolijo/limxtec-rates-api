@@ -4,7 +4,7 @@ A Restful API that displays currently integrated LIMXTEC coins in exchange rates
 ## Requirements
 Requires node version 6.0 and above
 ```sh
-sudo apt-get install nodejs
+sudo apt-get install nodejs jq
 nodejs --version
 ```
 
@@ -16,14 +16,31 @@ npm config set strict-ssl false
 npm install
 ```
 
-## Usage
+## Start
 Start the service with command:
 ```
 npm start
 ```
 
-After the service has been started, you should be able to browse to it on port 3333.
-Example: http://localhost:3333/rates
+## Usage
+After the service has been started, you should be able to browse to it on port 3333 (http://localhost:3333/rates).
+```sh
+
+#get all rates
+curl http://localhost:3333/rates
+
+#get all rates parsed as JSON
+curl --silent http://localhost:3333/rates | jq
+
+#get all FIAT currency rates parsed as JSON
+curl --silent http://localhost:3333/rates | jq '.[0]'
+
+#get all crypto rates parsed as JSON
+curl --silent http://localhost:3333/rates | jq '.[1]'
+
+#get rate of COIN parsed as JSON
+curl --silent http://localhost:3333/rates | jq '.[1]'.COIN
+```
 
 ## Run as docker container
 ```sh
