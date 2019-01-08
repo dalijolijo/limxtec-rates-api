@@ -3,10 +3,16 @@ A Restful API that displays currently integrated LIMXTEC coins in exchange rates
 
 ## Requirements
 Requires node version 6.0 and above
+```sh
+sudo apt-get install nodejs
+nodejs --version
+```
 
 ## Installation
 Install npm dependencies with command:
 ```
+cd limxtec-rates-api
+npm config set strict-ssl false
 npm install
 ```
 
