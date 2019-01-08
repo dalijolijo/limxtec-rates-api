@@ -1,6 +1,6 @@
 const request = require('request-promise-native');
 
-const zeltrezRates = {
+const limxtecRates = {
   getAll() {
     return Promise.all([
       request({ uri: 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=TOK,CONI,PAX,GUSD,USDC,ETC,XMR,DASH,BTC,ETH,ZEC,USDT,LTC,BTCZ,RVN,BCH,BNB,BTX,SONM,OMG,ZIL,ZRX,GNT,SPHTX,BAT,MKR,KNC,ENG,PAY,SUB,CVC,STX,BTG,KCS,SRN&tsyms=BTC', json: true }),
@@ -12,7 +12,11 @@ const zeltrezRates = {
       request({ uri: 'https://api.coinmarketcap.com/v1/ticker/suqa/', json: true }),
       request({ uri: 'https://tradesatoshi.com/api/public/getticker?market=GENX_BTC', json: true }),
       request({ uri: 'https://api.crex24.com/v2/public/tickers?instrument=BZE-BTC', json: true }),
-      request({ uri: 'https://coinlib.io/api/v1/coin?key=38bc7ea5cf2b6231&pref=BTC&symbol=POR', json: true })
+      request({ uri: 'https://coinlib.io/api/v1/coin?key=38bc7ea5cf2b6231&pref=BTC&symbol=POR', json: true }),
+      request({ uri: 'https://api.coinmarketcap.com/v1/ticker/bitcore/', json: true }),
+      request({ uri: 'https://api.coinmarketcap.com/v1/ticker/bitsend/', json: true }),
+      request({ uri: 'https://api.coinmarketcap.com/v1/ticker/bitcloud/', json: true }),
+      request({ uri: 'https://api.coinmarketcap.com/v1/ticker/megacoin/', json: true })
     ]).then((results) => {
       const ccDataA = results[0]; // results from cryptocompare
       const ccDataB = results[1]; // results from cryptocompare
@@ -24,6 +28,10 @@ const zeltrezRates = {
       const genxprice = results[7].result.last
       const bzeprice = results[8][0].last
       const porprice = Number(results[9].price)
+      const btxprice = Number(results[10][0].price_btc)
+      const bsdprice = Number(results[11][0].price_btc)
+      const btdxprice = Number(results[12][0].price_btc)
+      const mecprice = Number(results[13][0].price_btc)
 
       const rates = [];
       const efg = {}
@@ -45,6 +53,10 @@ const zeltrezRates = {
       efg.GENX = genxprice
       efg.BZE = bzeprice
       efg.POR = porprice
+      efg.BTX = btxprice
+      efg.BSD = bsdprice
+      efg.BTDX = btdxprice
+      efg.MEC = mecprice
       rates.push(bitpayData);
       rates.push(efg)
 
@@ -53,4 +65,4 @@ const zeltrezRates = {
   },
 };
 
-module.exports = zeltrezRates;
+module.exports = limxtecRates;
